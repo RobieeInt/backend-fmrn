@@ -118,29 +118,24 @@ class UserController extends Controller
 
     public function updatePhoto(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'file' => 'required|image|max:2048'
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|image|max:2048',
         ]);
 
-        if($validator->fails())
-        {
-            return ResponseFormatter::error(
-                ['error' => $validator->errors()],
-                'Update Photo fails',
-                401
-            );
+        if ($validator->fails()) {
+            return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Photo Fails', 401);
         }
 
-        if($request->file('file'))
-        {
-            $file = $request->file->store('assets/user','public');
+        if ($request->file('file')) {
 
-            //simpen foto ke db
+            $file = $request->file->store('assets/user', 'public');
+
+            //store your file into database
             $user = Auth::user();
             $user->profile_photo_path = $file;
             $user->update();
 
-            return ResponseFormatter::success([$file], 'File Success Uploaded');
+            return ResponseFormatter::success([$file],'File successfully uploaded');
         }
     }
 }

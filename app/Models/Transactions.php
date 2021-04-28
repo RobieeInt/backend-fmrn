@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Transactions extends Model
 {
     use HasFactory, SoftDeletes;
+
      protected $fillable = [
-        'jhajan_id',
+        'food_id',
         'user_id',
         'quantity',
         'total',
@@ -19,9 +20,9 @@ class Transactions extends Model
         'payment_url',
     ];
 
-    public function jhajan()
+    public function food()
     {
-        return $this->hasOne(Jhajan::class,'id','jhajan_id');
+        return $this->hasOne(food::class,'id','food_id');
     }
 
     public function user()

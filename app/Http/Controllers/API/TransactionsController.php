@@ -16,19 +16,19 @@ class TransactionsController extends Controller
     public function all(Request $request)
     {
         $id = $request->input('id');
-        $limit = $request->input('limit');
-        $jhajan_id = $request->input('jhajan_id');
+        $limit = $request->input('limit', 6);
+        $food_id = $request->input('food_id');
         $status = $request->input('status');
 
-        $price_from = $request->input('price_from');
-        $price_to = $request->input('price_to');
+        // $price_from = $request->input('price_from');
+        // $price_to = $request->input('price_to');
 
-        $rate_from = $request->input('rate_from');
-        $rate_to = $request->input('rate_to');
+        // $rate_from = $request->input('rate_from');
+        // $rate_to = $request->input('rate_to');
 
         if($id)
         {
-            $transactions = Transactions::with(['jhajan','user'])->find($id);
+            $transactions = Transactions::with(['food','user'])->find($id);
 
             if ($transactions)
             {
@@ -45,12 +45,12 @@ class TransactionsController extends Controller
             }
         }
 
-        $transactions = Transactions::with(['jhajan','user'])
+        $transactions = Transactions::with(['food','user'])
                         ->where('user_id', Auth::user()->id);
 
-        if($jhajan_id)
+        if($food_id)
         {
-            $transactions->where('jhajan_id', $jhajan_id );
+            $transactions->where('food_id', $food_id );
         }
 
        if($status)
@@ -77,7 +77,7 @@ class TransactionsController extends Controller
     public function checkout(Request $request)
     {
         $request->validate([
-            'jhajan_id' => 'required|exists:jhajan,id',
+            'food_id' => 'required|exists:food,id',
             'user_id' => 'required|exists:users,id',
             'quantity' => 'required',
             'total' => 'required',
@@ -85,7 +85,7 @@ class TransactionsController extends Controller
         ]);
 
         $transactions = Transactions::create([
-            'jhajan_id' => $request->jhajan_id,
+            'food_id' => $request->food_id,
             'user_id' => $request->user_id,
             'quantity' => $request->quantity,
             'total' => $request->total,
@@ -100,7 +100,7 @@ class TransactionsController extends Controller
         Config::$is3ds = config('services.midtrans.is3ds');
 
         //Panggil Transaksi yang baru dibuat
-        $transactions = Transactions::with(['jhajan', 'user'])->find($transactions->id);
+        $transactions = Transactions::with(['food', 'user'])->find($transactions->id);
 
         //Ngebuat Transaksi Midtrans
         $midtrans = [

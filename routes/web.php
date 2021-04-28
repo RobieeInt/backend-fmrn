@@ -7,7 +7,7 @@ use App\Http\Controllers\API\MidtransController;
 use App\Http\Controllers\API\TransactionsController as APITransactionsController;
 use App\Http\Controllers\JhajanController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\FoodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +32,7 @@ Route::prefix('dashboard')
         Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
         Route::resource('users', UserController::class);
         Route::resource('jhajan', JhajanController::class);
+        Route::resource('food', FoodController::class);
 
         Route::get('transactions/{id}/status/{status}', [TransactionController::class, 'changeStatus'])
                 ->name('transactions.changeStatus');

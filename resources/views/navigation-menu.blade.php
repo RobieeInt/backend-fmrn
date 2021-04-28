@@ -22,6 +22,11 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="/dashboard/food" :active="request()->routeIs('dashboard/food')">
+                        {{ __('Food') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="/dashboard/jhajan" :active="request()->routeIs('dashboard/jhajan')">
                         {{ __('Jhajan') }}
                     </x-jet-nav-link>

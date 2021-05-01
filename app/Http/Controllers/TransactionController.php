@@ -15,7 +15,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transactions::with(['jhajan','user'])->paginate(10);
+        $transaction = Transactions::with(['food','user'])->paginate(10);
 
         return view('transactions.index', [
             'transactions' => $transaction

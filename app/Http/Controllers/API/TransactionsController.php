@@ -113,7 +113,7 @@ class TransactionsController extends Controller
                 'first_name' => $transactions->user->name,
                 'email' => $transactions->user->email,
             ],
-            'enabled_payment' => ['gopay','bank_transfer'],
+            'enabled_payments' => ['bank_transfer','gopay'],
             'vtweb' => []
         ];
 

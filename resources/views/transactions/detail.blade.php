@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Transaction &raquo; {{ $item->jhajan->name }} by {{ $item->user->name }}
+            Transaction &raquo; {{ $item->food->name }} by {{ $item->user->name }}
         </h2>
     </x-slot>
 
@@ -10,13 +10,13 @@
             <div class="w-full rounded overflow-hidden shadow-lg py-6 px-6 bg-white">
                    <div class="flex flex-wrap -mx-4 -md-4 md:mb-0">
                     <div class="w-full md:w-1/6 px-4 mb-4 md:mb-0">
-                <img src="{{ $item->jhajan->picturePath }}" class="w-full rounded" alt="">
+                <img src="{{ $item->food->picturePath }}" class="w-full rounded" alt="">
             </div>
             <div class="w-full md:w-5/6 px-4 mb-4 md:mb-0">
                 <div class="flex flex-wrap mb-3">
                     <div class="w-2/6">
                         <div class="text-sm">Product Name</div>
-                        <div class="text-xl font-bold">{{ $item->jhajan->name }}</div>
+                        <div class="text-xl font-bold">{{ $item->food->name }}</div>
                     </div>
                     <div class="w-1/6">
                         <div class="text-sm">Quantity</div>

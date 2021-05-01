@@ -22,7 +22,7 @@ class MidtransController extends Controller
         $notification = new Notification();
 
         //Assign Variable biar mudah Coding
-        $status = $notification->status;
+        $status = $notification->transaction_status;
         $type = $notification->payment_type;
         $fraud = $notification->fraud_status;
         $order_id = $notification->order_id;
